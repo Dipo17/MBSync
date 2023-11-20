@@ -12,7 +12,7 @@ Citizen.CreateThread(function()
     facecamera = true,
     type = 9,
     useTexture = true,
-    textureName = 'rapina',
+    textureName = 'donut',
     message = 'Press ~INPUT_CONTEXT~ to interact',
     onPress = function(self)
       -- Marker onPress code here
