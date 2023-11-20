@@ -1,0 +1,3 @@
+shared = {
+    textureDict = "marker"
+}
