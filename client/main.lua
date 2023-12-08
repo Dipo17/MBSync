@@ -40,7 +40,7 @@ RegisterNetEvent("mbsync.addMarker", function(data)
         textureDict      = textureDict, -- Texture dict
         textureName      = data.textureName, -- Texture name (in the texture dictionary)
         distance         = data.drawDistance or 4.0, -- Draw Marker Distance
-        interactDistance = data.interactDistance or 2, -- Marker interact distance
+        interactDistance = data.interactDistance or 2.0, -- Marker interact distance
         type             = data.type, -- Type of the marker https://docs.fivem.net/docs/game-references/markers/
         key              = data.key or "E", -- Key to interact with the marker
         message          = data.message, -- Message on the TextUI
@@ -51,12 +51,10 @@ RegisterNetEvent("mbsync.addMarker", function(data)
 
     function marker:nearby()
         DrawMarker(self.type, self.coords.x,self.coords.y,self.coords.z,0.0,0.0,0.0,self.rotation.x,self.rotation.y,self.rotation.z,self.scale.x,self.scale.y,self.scale.z,self.rgba.r,self.rgba.g,self.rgba.b,self.rgba.a,self.rebound,self.facecamera,2,self.rotate,self.textureDict,self.textureName,false)
-        
-        local distance = #(GetEntityCoords(cache.ped) - self.coords)
 
-        if(distance <= self.interactDistance) then
+        if self.currentDistance < data.interactDistance then
             TextUI(self.message)
-            if(IsControlJustPressed(0, keys[self.key])) then
+            if (IsControlJustPressed(0, keys[self.key])) then
                 marker:onPress()
             end
         end
