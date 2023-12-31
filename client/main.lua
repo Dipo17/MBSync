@@ -63,33 +63,6 @@ RegisterNetEvent("mbsync.addMarker", function(data)
     markers[marker.name] = marker
 end)
 
-CreateThread(function()
-    TriggerEvent("mbsync.addMarker", {
-        name = "marker_example",
-        coords = vec3(-75.47181, -819.3127, 326.1755),
-        scale = vec3(0.5,0.5,0.5),
-        drawDistance = 4,
-        interactDistance = 1,
-        rotation = vec3(90.0,0.0,0.0),
-        rotate = true,
-        -- rebound = true,
-        facecamera = true,
-        type = 9,
-        useTexture = true,
-        textureName = 'donut',
-        message = 'Press ~INPUT_CONTEXT~ to interact',
-        onPress = function(self)
-            print("You have pressed "..self.key)
-        end,
-        onEnter = function(self)
-            print("You have entered into the radius of the marker " .. self.distance)
-        end,
-        onExit = function(self)
-            print("You have exited from the radius of the marker " .. self.distance)
-        end
-    })
-end)
-
 RegisterNetEvent("mbsync.removeMarker", function(index)
     if(markers[index]) then
         markers[index]:remove()
